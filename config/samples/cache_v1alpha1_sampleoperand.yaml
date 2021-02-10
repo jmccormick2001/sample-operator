@@ -1,0 +1,7 @@
+apiVersion: cache.example.com/v1alpha1
+kind: SampleOperand
+metadata:
+  name: sampleoperand-sample
+spec:
+  # Add fields here
+  Nodes: 
