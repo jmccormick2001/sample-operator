@@ -2,6 +2,14 @@
 
 An example operator to test upgrade features with...
 
+Here we will demonstrate how to create a hotfix (1.0.1), then
+upgrade an installed operator at version 1.0.0 to that hotfix.
+Lastly, we show how to upgrade the operator to something beyond
+the hotfix like 1.1.0.
+
+1.0.0 -> 1.0.1 (skipRange <1.0.1) -> 1.1.0 (skipRange <1.1.0)
+
+We will use skipRange settings to facilitate the upgrade process.
 
 # Versions 
 
