@@ -52,7 +52,7 @@ func (r *SampleOperandReconciler) Reconcile(ctx context.Context, req ctrl.Reques
 	_ = r.Log.WithValues("sampleoperand", req.NamespacedName)
 
 	// your logic here
-	fmt.Printf("here you got something in reconcile %+v\n", req.NamespacedName)
+	fmt.Printf("here you got something in version 2.0.0 reconcile %+v\n", req.NamespacedName)
 
 	return ctrl.Result{}, nil
 }
