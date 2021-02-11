@@ -10,6 +10,7 @@ Here are versions this example has been developed and tested with:
  * k8s -  1.20
  * operator-sdk - 1.4.0
  * kubebuilder -  2.3.1
+ * opm -  1.16.1
  
 # Environment Setup
 
