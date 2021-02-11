@@ -5,4 +5,4 @@ metadata:
   namespace: operators
 spec:
   sourceType: grpc
-  image: docker.io/jmccormick2001/sample-operator-index:v0.0.1
+  image: docker.io/jmccormick2001/sample-operator-index:v1.0.0

@@ -18,7 +18,7 @@ metadata:
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.4.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-  name: sample-operator.v0.0.1
+  name: sample-operator.v1.0.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -108,7 +108,7 @@ spec:
                 - --leader-elect
                 command:
                 - /manager
-                image: docker.io/jmccormick2001/sample-operator:v0.0.1
+                image: docker.io/jmccormick2001/sample-operator:v1.0.0
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -176,4 +176,4 @@ spec:
   maturity: alpha
   provider:
     name: jeffmccormick
-  version: 0.0.1
+  version: 1.0.0
