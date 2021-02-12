@@ -109,6 +109,7 @@ spec:
                 command:
                 - /manager
                 image: docker.io/jmccormick2001/sample-operator:v2.0.0
+                imagePullPolicy: Always
                 livenessProbe:
                   httpGet:
                     path: /healthz
