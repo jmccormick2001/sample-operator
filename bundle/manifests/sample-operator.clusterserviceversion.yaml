@@ -76,7 +76,7 @@ spec:
           - subjectaccessreviews
           verbs:
           - create
-        serviceAccountName: default
+        serviceAccountName: sample-operator
       deployments:
       - name: sample-operator-controller-manager
         spec:
@@ -131,6 +131,8 @@ spec:
                     memory: 20Mi
                 securityContext:
                   allowPrivilegeEscalation: false
+              serviceAccount: sample-operator
+              serviceAccountName: sample-operator
               securityContext:
                 runAsUser: 65532
               terminationGracePeriodSeconds: 10
@@ -157,7 +159,7 @@ spec:
           verbs:
           - create
           - patch
-        serviceAccountName: default
+        serviceAccountName: sample-operator
     strategy: deployment
   installModes:
   - supported: false
