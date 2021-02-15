@@ -2,9 +2,9 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: sample-operator-subscription
-  namespace: jeff-operators 
+  namespace: operators 
 spec:
   channel: stable
   name: sample-operator
   source: sample-operator
-  sourceNamespace: jeff-operators
+  sourceNamespace: operators
