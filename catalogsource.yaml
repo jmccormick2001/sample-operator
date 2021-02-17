@@ -1,8 +1,8 @@
 kind: CatalogSource
 apiVersion: operators.coreos.com/v1alpha1
 metadata:
-  name: sample-operator
+  name: sample-operator-hotfix
   namespace: operators
 spec:
   sourceType: grpc
-  image: docker.io/jmccormick2001/sample-operator-index:v1.0.0
+  image: docker.io/jmccormick2001/sample-operator-index:v1.0.3

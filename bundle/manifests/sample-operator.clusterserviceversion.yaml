@@ -16,9 +16,10 @@ metadata:
         }
       ]
     capabilities: Basic Install
+    olm.skipRange: ">=1.0.0 <1.0.3"
     operators.operatorframework.io/builder: operator-sdk-v1.4.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-  name: sample-operator.v1.0.0
+  name: sample-operator.v1.0.3
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -108,7 +109,7 @@ spec:
                 - --leader-elect=false
                 command:
                 - /manager
-                image: docker.io/jmccormick2001/sample-operator:v1.0.0
+                image: docker.io/jmccormick2001/sample-operator:v1.0.3
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -178,4 +179,4 @@ spec:
   maturity: alpha
   provider:
     name: jeffmccormick
-  version: 1.0.0
+  version: 1.0.3

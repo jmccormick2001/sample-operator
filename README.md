@@ -20,22 +20,26 @@ Here are versions this example has been developed and tested with:
 # Steps to Build
 
 ```bash=
-make docker-build docker-push IMG=docker.io/jmccormick2001/sample-operator:v1.0.0
+make docker-build docker-push IMG=docker.io/jmccormick2001/sample-operator:v1.0.3
 make bundle
 ```
 
 Edit the annotations.yaml, and Makefile to specify a channel and default
 channel to be **stable** instead of **alpha**
 
-Edit the CSV to use your docker.io/jmccormick2001/sample-operator:v1.0.0 image!
+Edit the CSV to use your docker.io/jmccormick2001/sample-operator:v1.0.3 image!
 
 
 ```bash=
-make bundle-build BUNDLE_IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.0
-make docker-push IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.0
-operator-sdk bundle validate docker.io/jmccormick2001/sample-operator-bundle:v1.0.0
-opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.0 --tag docker.io/jmccormick2001/sample-operator-index:v1.0.0
-podman push docker.io/jmccormick2001/sample-operator-index:v1.0.0
+make bundle-build BUNDLE_IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
+make docker-push IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
+operator-sdk bundle validate docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
+opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.3 --tag docker.io/jmccormick2001/sample-operator-index:v1.0.3
+or
+opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.0,\
+docker.io/jmccormick2001/sample-operator-bundle:v1.0.3 --tag docker.io/jmccormick2001/sample-operator-index:v1.0.3
+
+podman push docker.io/jmccormick2001/sample-operator-index:v1.0.3
 ```
 
 Create the catalogsource that points to this new catalog index image:
@@ -49,6 +53,13 @@ kubectl -n operators get pod
 kubectl -n operators logs --selector=olm.catalogSource=sample-operator
 ```
 
+patch to perform an upgrade from 1.0.0:
+
+```bash=
+kubectl patch subscription sample-operator-subscription -n operators --type json -p '[{"op": "add", "path": "/spec/source","value": "sample-operator-hotfix"}]'
+```
+
+or 
 Create the subscription:
 ```bash=
 kubectl create -f subscription.yaml
@@ -60,7 +71,7 @@ Verify you get a Succeeded CSV like this:
 ```bash=
 kubectl -n operators get csv
 NAME                     DISPLAY          VERSION   REPLACES   PHASE
-sample-operator.v1.0.0   sampleoperator   1.0.0                Succeeded
+sample-operator.v1.0.3   sampleoperator   1.0.3                Succeeded
 ```
 
 If not, verify that the pod is running:
@@ -91,5 +102,5 @@ kubectl -n operators delete subscription/sample-operator-subscription
 kubectl -n operators delete catalogsource/sample-operator
 kubectl -n operators delete deploy/sample-operator-controller-manager
 kubectl -n operators delete service/sample-operator-controller-manager-metrics-service deployment.apps/sample-operator-controller-manager
-kubectl -n operators delete csv sample-operator.v1.0.0
+kubectl -n operators delete csv sample-operator.v1.0.3
 ```
