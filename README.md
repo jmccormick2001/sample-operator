@@ -34,7 +34,7 @@ Edit the CSV to use your docker.io/jmccormick2001/sample-operator:v2.0.0 image!
 make bundle-build BUNDLE_IMG=docker.io/jmccormick2001/sample-operator-bundle:v2.0.0
 make docker-push IMG=docker.io/jmccormick2001/sample-operator-bundle:v2.0.0
 operator-sdk bundle validate docker.io/jmccormick2001/sample-operator-bundle:v2.0.0
-opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.0,docker.io/jmccormick2001/sample-operator-bundle:v1.0.3,docker.io/jmccormick2001/sample-operator-bundle:v2.0.0 --tag docker.io/jmccormick2001/sample-operator-index:v2.0.0
+opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v2.0.0 --tag docker.io/jmccormick2001/sample-operator-index:v2.0.0
 podman push docker.io/jmccormick2001/sample-operator-index:v2.0.0
 ```
 
