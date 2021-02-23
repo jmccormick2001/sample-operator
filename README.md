@@ -35,9 +35,6 @@ make bundle-build BUNDLE_IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.
 make docker-push IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
 operator-sdk bundle validate docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
 opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.3 --tag docker.io/jmccormick2001/sample-operator-index:v1.0.3
-or
-opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.0,\
-docker.io/jmccormick2001/sample-operator-bundle:v1.0.3 --tag docker.io/jmccormick2001/sample-operator-index:v1.0.3
 
 podman push docker.io/jmccormick2001/sample-operator-index:v1.0.3
 ```
