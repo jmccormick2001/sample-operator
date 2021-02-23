@@ -20,23 +20,23 @@ Here are versions this example has been developed and tested with:
 # Steps to Build
 
 ```bash=
-make docker-build docker-push IMG=docker.io/jmccormick2001/sample-operator:v1.0.3
+make docker-build docker-push IMG=docker.io/jmccormick2001/sample-operator:v1.0.0-1
 make bundle
 ```
 
 Edit the annotations.yaml, and Makefile to specify a channel and default
 channel to be **stable** instead of **alpha**
 
-Edit the CSV to use your docker.io/jmccormick2001/sample-operator:v1.0.3 image!
+Edit the CSV to use your docker.io/jmccormick2001/sample-operator:v1.0.0-1 image!
 
 
 ```bash=
-make bundle-build BUNDLE_IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
-make docker-push IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
-operator-sdk bundle validate docker.io/jmccormick2001/sample-operator-bundle:v1.0.3
-opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.3 --tag docker.io/jmccormick2001/sample-operator-index:v1.0.3
+make bundle-build BUNDLE_IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.0-1
+make docker-push IMG=docker.io/jmccormick2001/sample-operator-bundle:v1.0.0-1
+operator-sdk bundle validate docker.io/jmccormick2001/sample-operator-bundle:v1.0.0-1
+opm index add --bundles docker.io/jmccormick2001/sample-operator-bundle:v1.0.0-1 --tag docker.io/jmccormick2001/sample-operator-index:v1.0.0-1
 
-podman push docker.io/jmccormick2001/sample-operator-index:v1.0.3
+podman push docker.io/jmccormick2001/sample-operator-index:v1.0.0-1
 ```
 
 Create the catalogsource that points to this new catalog index image:
@@ -68,7 +68,7 @@ Verify you get a Succeeded CSV like this:
 ```bash=
 kubectl -n operators get csv
 NAME                     DISPLAY          VERSION   REPLACES   PHASE
-sample-operator.v1.0.3   sampleoperator   1.0.3                Succeeded
+sample-operator.v1.0.0-1   sampleoperator   1.0.0-1                Succeeded
 ```
 
 If not, verify that the pod is running:
@@ -99,5 +99,5 @@ kubectl -n operators delete subscription/sample-operator-subscription
 kubectl -n operators delete catalogsource/sample-operator
 kubectl -n operators delete deploy/sample-operator-controller-manager
 kubectl -n operators delete service/sample-operator-controller-manager-metrics-service deployment.apps/sample-operator-controller-manager
-kubectl -n operators delete csv sample-operator.v1.0.3
+kubectl -n operators delete csv sample-operator.v1.0.0-1
 ```
