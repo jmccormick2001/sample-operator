@@ -82,8 +82,6 @@ spec:
       - name: sample-operator-controller-manager
         spec:
           replicas: 1
-          serviceAccount: sample-operator
-          serviceAccountName: sample-operator
           selector:
             matchLabels:
               control-plane: controller-manager
@@ -108,11 +106,10 @@ spec:
               - args:
                 - --health-probe-bind-address=:8081
                 - --metrics-bind-address=127.0.0.1:8080
-                - --leader-elect
+                - --leader-elect=false
                 command:
                 - /manager
                 image: docker.io/jmccormick2001/sample-operator:v2.0.0
-                imagePullPolicy: Always
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -135,6 +132,8 @@ spec:
                     memory: 20Mi
                 securityContext:
                   allowPrivilegeEscalation: false
+              serviceAccount: sample-operator
+              serviceAccountName: sample-operator
               securityContext:
                 runAsUser: 65532
               terminationGracePeriodSeconds: 10
